@@ -10,91 +10,121 @@
 * violation of encapsulation
 * improper use of abstract classes
 * procedural coding style
-* a lot of dead code
-* lack of good refactoring / cleaning up code 
+* dead code (a lot)
+* lack of refactoring / cleaning up code after research is finished
 
 @ulend
 ---
 
-### A case for coding in research
+### A case for good code in research
 
-* common argument: we do research not software developement
+* common argument: we are data scientists, not software engineers
 * but good coding practices will eventually also help research
 
 +++
 
-### A case for coding in research 
-
-@ul
+#### For the Community
 
 * the research community will read and use our code in order  to reproduce paper results -> bad code quality likely to impair reputation
 * partners / collaborators of funded projects in the industry will use or collaborate on our code -> good code leads to better relationships and less frustration
+
+
+#### For Ourselves
+
 * code we develop today is part of our toolset tomorrow 
 	* sound api design and clean, understandable code will boost productivity
 	* -> more time to write great papers
 
-@ulend
 
 ---
 
-## Specific problem areas
+## General Guidelines
 
 +++
 
-### Testing 
-* JUnit
-	* Split unit and integration tests
-* Mockito
-	* Use for unit tests
-* Goal: Increase test coverage & quality
-	* Develop from scratch  with TDD?
-	* Pair programming / Independent test developers?
+#### Interfaces
+
+* most interfaces too bloated
+* break them down into multiple smaller interfaces (SRP)
+* improved modularity, less coupling between packages
 
 +++
 
-### Modular Design
-* rethink package structure
-* multilayered design?
-* decouple from 3rd party libraries using wrappers?
-* obey LoD?
+#### Classes
+
+* minimize public interfaces
+* don't code against implementations
+* use abstract classes only for encapsulating common logic of subclasses
+* abstract classes should be package-private
+* don't hesitate to finalize methods in abstract classes 
 
 +++
 
-### Evaluation Package
-* Goal? -> automate experiment implementations
-* Goal achievable in general?
-	* Current design (e.g. ML) often stands in the way of experiments
-	* experienced the need of dirty unchecked casts and other hacks in order to perform experiments
-	* with DI and proper implementation of SRP, information hiding, etc. it should be doable elegantly
-	
-+++
+#### Modularity
 
-### Machine Learning
-* current design too restrictive / does not allow for easy interaction 
+* meaningful packages
+* multi module maven project
+* plugin architecture
+* wrap third party libraries to reduce migration pain (example: jena)
 
 +++
 
-### Single Configuration Standard RDF
-* We're experts at parsing, storing and processing graphs.
-* XML is not easier to write or read than Turtle.
-* Even if XML configuration is required for some reason, we have RDF/XML.
+#### Testing
+
+* unit tests should test *one unit* of code
+* dependencies should be mocked
+* don't duplicate logic between implementation and tests
+
+---
+
+## Ideas for LIMES 2.0
 
 +++
 
-### Mappers / Measures / Caches
-* The Mappers/Measures interfaces fail to abstract over all possible implementations
-* In turn, sub interfaces have been introduced
-	* just adds complexity to instance creation
-	* barriers for ml algorithms
-* Most problematic: graph similarity measures
-	* need good programmatic access to graph structure
-	* our default data pipeline (readers->caches) removes graph structure / makes it very hard to access graph structure
+#### Some general points
+
+* use dependency injection (Dagger 2?)
+* use plugin architecture (PF4J)
+* increase test quality with automated mocking (Mockito)
 
 +++
 
-### Spark / Flink specific
-* Testing Spark?
-* DI with Spark?
-* Data flow with Spark?
-* Architecture with Spark?
-* Rewriting/ExecutionEngines with Spark?
+#### LIMES Configuration
+
+* single standard: rdf configuration
+* homogenous way to declare and parametrize all components
+* rethink querying data
+* rethink preprocessing declaration
+* rethink LS declarations
+* rethink automatic evaluation
+
+
++++
+
+#### Core Components: Caches
+
+* allow better programmatic access to graph structure
+* use Jena Models under the hood?
+
++++
+
+#### Core Components: Mapper / Measure
+
+* Mapper / Measure interfaces fail to abstract over all implementations
+* this defeats the purpose of those interfaces
+* in turn, sub interfaces have been introduced
+                * adds further complexity to instance creation
+                * barriers for ml algorithms
+* very problematic: graph similarity measures
+                * need good programmatic access to graph structure
+	        * default data pipeline (readers->caches) removes / makes it hard to access graph structure
+
++++
+
+#### Spark / Flink Questions
+* Try to reduce Spark/Flink-specific codebase
+* Testing Spark/Flink?
+* DI for Spark/Flink?
+* Data flow in Spark/Flink?
+* Architecture with Spark/Flink?
+* Rewriting/ExecutionEngines for Spark/Flink?
