@@ -3,18 +3,33 @@
 
 ---
 ## Common Problems
-* massive code duplication!
+@ul
+
+* massive code duplication
 * violation of SRP
 * violation of encapsulation
-* improper use of abstract classes where interfaces should be used
+* improper use of abstract classes
 * procedural coding style
-* a lot of dead code, as a result of the lack of good refactoring / cleaning up code after a given research question has been answered and enough data has been gathered for the paper. true, we're researchers, not engineers but imho, our software deserves more devotion for three reasons:
+* a lot of dead code
+* lack of good refactoring / cleaning up code 
+
+@ulend
+---
 
 ### A case for coding in research
 
-1) the community will eventually look up and use our code when trying to reproduce our published research results. bad code will probably result in a drop in reputation
-2) partners / collaborators of funded projects in the industry will get in touch with our code. good code will lead to good relationships and less frustration.
-3) last but not least, the code we develop today is part of the tool we use tomorrow: a sound api design and clean, understandable code will boost productivity when implementing new ideas and, in turn create more time to focus on writing great papers.
+* common argument: we do research not software developement
+* but good coding practices will eventually also help research
+
++++
+
+@ul
+
+* the community will eventually look up and use our code when trying to reproduce our published research results. bad code will probably result in a drop in reputation
+* partners / collaborators of funded projects in the industry will get in touch with our code. good code will lead to good relationships and less frustration.
+* last but not least, the code we develop today is part of the tool we use tomorrow: a sound api design and clean, understandable code will boost productivity when implementing new ideas and, in turn create more time to focus on writing great papers.
+
+@ulend
 
 ## Specific problem areas
 
