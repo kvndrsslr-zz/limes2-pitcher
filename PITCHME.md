@@ -114,11 +114,11 @@
 * Mapper / Measure interfaces fail to abstract over all implementations
 * this defeats the purpose of those interfaces
 * in turn, sub interfaces have been introduced
-                * adds further complexity to instance creation
-                * barriers for ml algorithms
+     * adds further complexity to instance creation
+     * barriers for ml algorithms
 * very problematic: graph similarity measures
-                * need good programmatic access to graph structure
-	        * default data pipeline (readers->caches) removes / makes it hard to access graph structure
+     * need good programmatic access to graph structure
+     * default data pipeline (readers->caches) removes / makes it hard to access graph structure
 
 +++
 
@@ -129,4 +129,3 @@
 * Data flow in Spark/Flink?
 * Architecture with Spark/Flink?
 * Rewriting/ExecutionEngines for Spark/Flink?
-
