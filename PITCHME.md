@@ -28,6 +28,7 @@
 * the research community will read and use our code in order  to reproduce paper results -> bad code quality likely to impair reputation
 * partners / collaborators of funded projects in the industry will use or collaborate on our code -> good code leads to better relationships and less frustration
 
++++
 
 #### For Ourselves
 
@@ -128,3 +129,4 @@
 * Data flow in Spark/Flink?
 * Architecture with Spark/Flink?
 * Rewriting/ExecutionEngines for Spark/Flink?
+
