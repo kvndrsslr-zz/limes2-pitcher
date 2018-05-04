@@ -1,6 +1,7 @@
-# LIMES Design Issues/Questions Catalogue
+# LIMES Issues and Solutions
 <!-- page_number: true -->
 
+---
 ## Common Problems
 * massive code duplication!
 * violation of SRP
